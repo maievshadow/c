@@ -10,9 +10,6 @@ plist init_list(plist list){
 	list->next = NULL;
 }
 
-plist push_list(int elem){
-}
-
 void print_list(plist list){
 	plist p;
 	p = list->next;
@@ -24,4 +21,19 @@ void print_list(plist list){
 		++i;
 		printf("the current loc is %d and data is %d", i, p->data);
 	}
+}
+
+int insert_list(plist list, int i, int len){
+}
+
+int delete_list(plist list, int i){
+}
+
+int get_list(plist list, in i){
+}
+
+int search_list(plist list, int elem){
+}
+
+int update_list(plist list, int i ,int elem){
 }
