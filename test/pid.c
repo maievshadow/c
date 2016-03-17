@@ -1,12 +1,20 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include "apue.h"
+#include <signal.h>
+
+static void sig_int(int);
+
 int
 main(void)
 {
     char buf[MAXLINE];
     pid_t pid;
     int status;
+    
+    if (signal(SIGINT, sig_int) == SIG_ERR)
+        err_sys("signal error");
+
 
     printf("%%");
     while (fgets(buf, MAXLINE, stdin) != NULL){
@@ -27,4 +35,10 @@ main(void)
         printf("%%");
     }
     exit(0);
+}
+
+void
+sig_int(int)
+{
+    printf("interrupt\n%% ");
 }
