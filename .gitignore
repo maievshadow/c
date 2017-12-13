@@ -1,2 +1,5 @@
 *.out
-/test
+src/test/*
+src/bin
+src/obj
+Untitled.xcworkspace/*
