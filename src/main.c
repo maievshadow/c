@@ -5,13 +5,17 @@
 
 int main(void)
 {
-    Student stu1;
-
     Stu ptr;
-
     ptr = create();
-
     init(ptr);
     print(ptr);
     del(ptr);
+
+    Student stu1;
+
+    stu1.age = 100;
+    strcpy(stu1.name, "maiev22");
+    strcpy(stu1.sex, "M");
+
+    print(&stu1);
 }
