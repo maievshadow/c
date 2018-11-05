@@ -10,27 +10,16 @@
 cmake_minimum_required(VERSION 2.8)
 add_executable(Main main.cpp)
 
-    1
-    2
-
 然后运行下面的命令,直接生成目标可执行文件Main。
 
 cmake .
 make
-
-    1
-    2
 
 如果要添加编译选项，可以通过下面的方法：
 
 cmake_minimum_required(VERSION 2.8)
 add_definitions("-Wall -std=c++11") # <= 新增的编译选项
 add_executable(Main main.cpp)
-
-    1
-    2
-    3
-
  
 2.单目录多源文件的编译
 
@@ -42,16 +31,6 @@ add_executable(Main
   mod_func1.cpp
   mod_func2.cpp
 )
-
-    1
-    2
-    3
-    4
-    5
-    6
-
- 
-3.多目录程序的编译
 
 假如你的项目的文件结构如下：
 
@@ -65,17 +44,6 @@ add_executable(Main
   mod2/
     func1.cpp
     func2.cpp
-
-    1
-    2
-    3
-    4
-    5
-    6
-    7
-    8
-    9
-    10
 
 一般有以下两种方法：
 
@@ -93,16 +61,6 @@ add_executable(Main
   mod2/func2.cpp
 )
 
-    1
-    2
-    3
-    4
-    5
-    6
-    7
-    8
-
- 
 2.每个目录均编写一个CMakeLists.txt
 
 #CMakeLists.txt
@@ -112,12 +70,6 @@ add_subdirectory(mod2)
 add_executable(Main main.cpp)
 target_link_libraries(Main Mod1 Mod2) 
 
-    1
-    2
-    3
-    4
-    5
-    6
 
 #mod1/CMakeLists.txt
 cmake_minimum_required(VERSION 2.8)
@@ -126,12 +78,6 @@ add_library(Mod1 STATIC
   func2.cpp
 )
 
-    1
-    2
-    3
-    4
-    5
-    6
 
 #mod2/CMakeLists.txt
 cmake_minimum_required(VERSION 2.8)
@@ -140,12 +86,6 @@ add_library(Mod2 STATIC
   func2.cpp
 )
 
-    1
-    2
-    3
-    4
-    5
-    6
 
 我个人更推荐使用这种方法，虽然它看似要编写的代码会增多，但由于更加模块化，管理起来会更加轻松。
 
