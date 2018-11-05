@@ -56,38 +56,38 @@ CMAKE_SOURCE_DIR = /home/redredmaple/study
 CMAKE_BINARY_DIR = /home/redredmaple/study
 
 #=============================================================================
-# Target rules for target CMakeFiles/Main.dir
+# Target rules for target CMakeFiles/bin/Main.dir
 
 # All Build rule for target.
-CMakeFiles/Main.dir/all:
-	$(MAKE) -f CMakeFiles/Main.dir/build.make CMakeFiles/Main.dir/depend
-	$(MAKE) -f CMakeFiles/Main.dir/build.make CMakeFiles/Main.dir/build
+CMakeFiles/bin/Main.dir/all:
+	$(MAKE) -f CMakeFiles/bin/Main.dir/build.make CMakeFiles/bin/Main.dir/depend
+	$(MAKE) -f CMakeFiles/bin/Main.dir/build.make CMakeFiles/bin/Main.dir/build
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/redredmaple/study/CMakeFiles  1
-	@echo "Built target Main"
-.PHONY : CMakeFiles/Main.dir/all
+	@echo "Built target bin/Main"
+.PHONY : CMakeFiles/bin/Main.dir/all
 
 # Include target in all.
-all: CMakeFiles/Main.dir/all
+all: CMakeFiles/bin/Main.dir/all
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/Main.dir/rule: cmake_check_build_system
+CMakeFiles/bin/Main.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/redredmaple/study/CMakeFiles 1
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/Main.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/bin/Main.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/redredmaple/study/CMakeFiles 0
-.PHONY : CMakeFiles/Main.dir/rule
+.PHONY : CMakeFiles/bin/Main.dir/rule
 
 # Convenience name for target.
-Main: CMakeFiles/Main.dir/rule
-.PHONY : Main
+bin/Main: CMakeFiles/bin/Main.dir/rule
+.PHONY : bin/Main
 
 # clean rule for target.
-CMakeFiles/Main.dir/clean:
-	$(MAKE) -f CMakeFiles/Main.dir/build.make CMakeFiles/Main.dir/clean
-.PHONY : CMakeFiles/Main.dir/clean
+CMakeFiles/bin/Main.dir/clean:
+	$(MAKE) -f CMakeFiles/bin/Main.dir/build.make CMakeFiles/bin/Main.dir/clean
+.PHONY : CMakeFiles/bin/Main.dir/clean
 
 # clean rule for target.
-clean: CMakeFiles/Main.dir/clean
+clean: CMakeFiles/bin/Main.dir/clean
 .PHONY : clean
 
 #=============================================================================

@@ -1,1 +1,1 @@
-/home/redredmaple/study/CMakeFiles/Main.dir
+/home/redredmaple/study/CMakeFiles/bin/Main.dir

@@ -6,15 +6,15 @@
 
 #IncludeRegexTransform: 
 
-/home/redredmaple/study/main.c
+/home/redredmaple/study/src/main.c
 stdio.h
 -
 stdlib.h
 -
 student.h
-/home/redredmaple/study/student.h
+/home/redredmaple/study/src/student.h
 
-/home/redredmaple/study/student.h
+/home/redredmaple/study/src/student.h
 malloc.h
 -
 

@@ -1,1 +1,0 @@
-/usr/bin/cc      CMakeFiles/Main.dir/main.c.o  -o Main -rdynamic 
