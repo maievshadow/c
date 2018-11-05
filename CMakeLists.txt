@@ -1,4 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
-add_executable(bin/Main
-  src/main.c
-)
+add_subdirectory(src/lib) 
+add_subdirectory(src/student) 
+add_executable(bin/Main src/main.c src/student/student.c)
+target_link_libraries(bin/Main Mod1) 
+#add_executable(bin/Main src/main.c)
+#target_link_libraries(bin/Main Mod1 Mod2) 

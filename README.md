@@ -53,6 +53,7 @@ add_executable(Main
 在项目的根目录下编写CMakeLists.txt：
 
 cmake_minimum_required(VERSION 2.8)
+
 add_executable(Main
   main.cpp
   mod1/func1.cpp

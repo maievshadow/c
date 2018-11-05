@@ -59,10 +59,10 @@ CMAKE_BINARY_DIR = /home/redredmaple/study
 # Target rules for target CMakeFiles/bin/Main.dir
 
 # All Build rule for target.
-CMakeFiles/bin/Main.dir/all:
+CMakeFiles/bin/Main.dir/all: src/lib/CMakeFiles/Mod1.dir/all
 	$(MAKE) -f CMakeFiles/bin/Main.dir/build.make CMakeFiles/bin/Main.dir/depend
 	$(MAKE) -f CMakeFiles/bin/Main.dir/build.make CMakeFiles/bin/Main.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/redredmaple/study/CMakeFiles  1
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/redredmaple/study/CMakeFiles  2 3
 	@echo "Built target bin/Main"
 .PHONY : CMakeFiles/bin/Main.dir/all
 
@@ -72,7 +72,7 @@ all: CMakeFiles/bin/Main.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/bin/Main.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/redredmaple/study/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/redredmaple/study/CMakeFiles 3
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/bin/Main.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/redredmaple/study/CMakeFiles 0
 .PHONY : CMakeFiles/bin/Main.dir/rule
@@ -89,6 +89,71 @@ CMakeFiles/bin/Main.dir/clean:
 # clean rule for target.
 clean: CMakeFiles/bin/Main.dir/clean
 .PHONY : clean
+
+#=============================================================================
+# Directory level rules for directory src/lib
+
+# Convenience name for "all" pass in the directory.
+src/lib/all: src/lib/CMakeFiles/Mod1.dir/all
+.PHONY : src/lib/all
+
+# Convenience name for "clean" pass in the directory.
+src/lib/clean: src/lib/CMakeFiles/Mod1.dir/clean
+.PHONY : src/lib/clean
+
+# Convenience name for "preinstall" pass in the directory.
+src/lib/preinstall:
+.PHONY : src/lib/preinstall
+
+#=============================================================================
+# Target rules for target src/lib/CMakeFiles/Mod1.dir
+
+# All Build rule for target.
+src/lib/CMakeFiles/Mod1.dir/all:
+	$(MAKE) -f src/lib/CMakeFiles/Mod1.dir/build.make src/lib/CMakeFiles/Mod1.dir/depend
+	$(MAKE) -f src/lib/CMakeFiles/Mod1.dir/build.make src/lib/CMakeFiles/Mod1.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/redredmaple/study/CMakeFiles  1
+	@echo "Built target Mod1"
+.PHONY : src/lib/CMakeFiles/Mod1.dir/all
+
+# Include target in all.
+all: src/lib/CMakeFiles/Mod1.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+src/lib/CMakeFiles/Mod1.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/redredmaple/study/CMakeFiles 1
+	$(MAKE) -f CMakeFiles/Makefile2 src/lib/CMakeFiles/Mod1.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/redredmaple/study/CMakeFiles 0
+.PHONY : src/lib/CMakeFiles/Mod1.dir/rule
+
+# Convenience name for target.
+Mod1: src/lib/CMakeFiles/Mod1.dir/rule
+.PHONY : Mod1
+
+# clean rule for target.
+src/lib/CMakeFiles/Mod1.dir/clean:
+	$(MAKE) -f src/lib/CMakeFiles/Mod1.dir/build.make src/lib/CMakeFiles/Mod1.dir/clean
+.PHONY : src/lib/CMakeFiles/Mod1.dir/clean
+
+# clean rule for target.
+clean: src/lib/CMakeFiles/Mod1.dir/clean
+.PHONY : clean
+
+#=============================================================================
+# Directory level rules for directory src/student
+
+# Convenience name for "all" pass in the directory.
+src/student/all:
+.PHONY : src/student/all
+
+# Convenience name for "clean" pass in the directory.
+src/student/clean:
+.PHONY : src/student/clean
+
+# Convenience name for "preinstall" pass in the directory.
+src/student/preinstall:
+.PHONY : src/student/preinstall
 
 #=============================================================================
 # Special targets to cleanup operation of make.

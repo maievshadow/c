@@ -2,4 +2,5 @@
 src/test/*
 src/bin
 src/obj
+CMakeFiles/*
 Untitled.xcworkspace/*
