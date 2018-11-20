@@ -3,7 +3,6 @@
 
 int main(void)
 {
-    run();
-    pp();
+    listTest();
     return 0;
 }

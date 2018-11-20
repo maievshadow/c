@@ -1,5 +1,5 @@
 #mod1/CMakeLists.txt
 cmake_minimum_required(VERSION 2.8)
-add_library(Mod1 STATIC
-  func.c
+add_library(List STATIC
+  list.c
 )

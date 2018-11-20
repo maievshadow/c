@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "list.h": "c",
+        "malloc.h": "c",
+        "stdlib.h": "c",
+        "student.h": "c"
+    }
+}

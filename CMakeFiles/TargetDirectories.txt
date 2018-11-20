@@ -1,2 +1,9 @@
-/home/redredmaple/study/src/lib/CMakeFiles/Mod1.dir
-/home/redredmaple/study/CMakeFiles/bin/Main.dir
+/Users/maievshabu/study/c/CMakeFiles/rebuild_cache.dir
+/Users/maievshabu/study/c/CMakeFiles/edit_cache.dir
+/Users/maievshabu/study/c/CMakeFiles/bin/Main.dir
+/Users/maievshabu/study/c/src/student/CMakeFiles/rebuild_cache.dir
+/Users/maievshabu/study/c/src/student/CMakeFiles/edit_cache.dir
+/Users/maievshabu/study/c/src/student/CMakeFiles/Stu.dir
+/Users/maievshabu/study/c/src/list/CMakeFiles/rebuild_cache.dir
+/Users/maievshabu/study/c/src/list/CMakeFiles/edit_cache.dir
+/Users/maievshabu/study/c/src/list/CMakeFiles/List.dir

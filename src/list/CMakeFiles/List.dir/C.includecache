@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/maievshabu/study/c/src/list/list.c
+stdlib.h
+-
+stdio.h
+-
+sys/malloc.h
+-
+list.h
+/Users/maievshabu/study/c/src/list/list.h
+
+/Users/maievshabu/study/c/src/list/list.h
+
