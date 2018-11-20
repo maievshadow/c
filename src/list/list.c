@@ -78,13 +78,13 @@ search(pList list, type elem)
 {
     pList p = list;
     int i = 0;
-    while (p->next != NULL && p->data != elem)
+    while (p != NULL && p->data != elem)
     {
         ++i;
-        p = list->next;
+        p = p->next;
     }
 
-    if (i == 0)
+    if (p == NULL)
         printf("not found\n");
     else
         printf("found elem is %d\n", i);
@@ -111,7 +111,7 @@ void listTest()
     //type a = 1;
     insert(list, 0, 1);
     lenList(list);
-    search(list, 2);
+    search(list, 1);
 }
 
  
