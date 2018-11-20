@@ -64,7 +64,7 @@ int
 update(pList list, int locate, type elem)
 {
     int len = 0;
-    pList tmp = list->next;
+    pList tmp = list;
     while (tmp->next != NULL && len == locate)
     {
         tmp = list->next;
@@ -76,7 +76,7 @@ update(pList list, int locate, type elem)
 int 
 search(pList list, type elem)
 {
-    pList p = list->next;
+    pList p = list;
     int i = 0;
     while (p->next != NULL && p->data != elem)
     {
@@ -95,7 +95,7 @@ int
 del(pList list, int locate)
 {
     int len = 0;
-    pList tmp = list->next;
+    pList tmp = list;
     while (tmp->next != NULL && len == locate)
     {
         tmp = list->next;
@@ -111,7 +111,7 @@ void listTest()
     //type a = 1;
     insert(list, 0, 1);
     lenList(list);
-    search(list, 1);
+    search(list, 2);
 }
 
  
