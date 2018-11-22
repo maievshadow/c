@@ -21,9 +21,9 @@ init(void)
 }
 
 pList
-init2(pList p)
+init2(pList *p)
 {
-   p = NULL; 
+    *p = NULL;
 }
 
 int
@@ -33,7 +33,7 @@ lenList(pList list)
     pList tmp = list;
     while (tmp->next != NULL){
         ++len;
-        tmp = list->next;
+        tmp = tmp->next;
     }
     
     printf("the list len is %d\n", len);
@@ -41,36 +41,55 @@ lenList(pList list)
 }
 
 int 
-insert(pList list, int locate, type elem)
+insert(pList list,  type elem)
 {
     pList p = NULL;
     p = (pList)malloc(sizeof(List));
 
-    if ( NULL == p){
+    pList tmp = list;
+    if (NULL == p)
+    {
         printf("malloc error\n");
         exit(0);
     }
-
-    pList tmp = list;
-    while (tmp->next != NULL)
-        tmp = tmp->next;
-
     p->data = elem;
-    p->next = tmp->next;
-    tmp->next = p;
+    p->next = NULL;
+
+    //@todo 没有表头的插入有问题哈。。很多问题么有考虑好细节。。
+    //算了。睡觉去吧～～
+    if (NULL == list)
+    {
+        list  = p;
+    }
+    else
+    {
+
+        int len = 0;
+        while (tmp->next != NULL)
+        {
+            tmp = tmp->next;
+        }
+
+        p->next = tmp->next;
+        tmp->next = p;
+    }
+
+    return 1;
 }
 
-int 
-update(pList list, int locate, type elem)
+int update(pList list, int locate, type elem)
 {
     int len = 0;
     pList tmp = list;
-    while (tmp->next != NULL && len == locate)
+    while (tmp->next != NULL && len != locate)
     {
-        tmp = list->next;
+        ++len;
+        tmp = tmp->next;
     }
 
-    list->data = elem;
+    tmp->data = elem;
+
+    printf("update %d locate %d\n", elem, len);
 }
 
 int 
@@ -78,14 +97,14 @@ search(pList list, type elem)
 {
     pList p = list;
     int i = 0;
-    while (p != NULL && p->data != elem)
+    while (p->next != NULL && p->data != elem)
     {
-        ++i;
         p = p->next;
+        ++i;
     }
 
     if (p == NULL)
-        printf("not found\n");
+        printf("%d not found\n", elem);
     else
         printf("found elem is %d\n", i);
     return i;
@@ -96,22 +115,47 @@ del(pList list, int locate)
 {
     int len = 0;
     pList tmp = list;
-    while (tmp->next != NULL && len == locate)
+    while (tmp->next != NULL && len != locate)
     {
-        tmp = list->next;
+        ++len;
+        tmp = tmp->next;
     }
 
-    free(tmp);
+    if (len < locate){
+        printf("del fail for locate is %d not found and len list is %d \n ", locate, len);
+    }else{
+        printf("del success list %d locate %d\n", len, tmp->data);
+        free(tmp);
+    }
+}
+
+void print(pList list)
+{
+    pList tmp = list->next;
+    int i = 0;
+    while (tmp != NULL){
+        printf(" %d --- %d \n", i++, tmp->data);
+        tmp = tmp->next;
+    }
 }
 
 void listTest()
 {
     pList list;
-    list = init();
-    //type a = 1;
-    insert(list, 0, 1);
-    lenList(list);
+    //list = init();
+    init2(&list);
+    for(int i = 0; i < 3 ; i++)
+        insert(&list, i);
     search(list, 1);
+    print(list);
+    return;
+    lenList(list);
+    search(list, 5);
+    update(list, 1, 100);
+    search(list, 100);
+    del(list,5);
+    lenList(list);
+    print(list);
 }
 
  

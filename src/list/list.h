@@ -13,7 +13,7 @@ pList
 init(void);
 
 pList
-init2(pList);
+init2(pList*);
 
 int 
 lenList(pList );
@@ -22,7 +22,7 @@ int
 search(pList, type);
 
 int 
-insert(pList, int, type);
+insert(pList, type);
 
 int 
 update(pList, int, type);
