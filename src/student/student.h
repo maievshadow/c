@@ -15,7 +15,7 @@ pStu create();
 void init(pStu ptr);
 void print(pStu ptr);
 
-void copyStu(ptu, Stu);
+void copyStu(pStu st1, pStu st2);
 
 pStu create()
 {

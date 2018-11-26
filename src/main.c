@@ -9,5 +9,6 @@ int main(void)
     */
 
     listTest();
+    apue_test();
     return 0;
 }

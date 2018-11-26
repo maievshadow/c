@@ -1,22 +1,23 @@
 # The set of languages for which implicit dependencies are needed:
-SET(CMAKE_DEPENDS_LANGUAGES
+set(CMAKE_DEPENDS_LANGUAGES
   "C"
   )
 # The set of files for implicit dependencies of each language:
-SET(CMAKE_DEPENDS_CHECK_C
-  "/home/redredmaple/study/src/main.c" "/home/redredmaple/study/CMakeFiles/bin/Main.dir/src/main.c.o"
+set(CMAKE_DEPENDS_CHECK_C
+  "/Users/maievshabu/study/c/src/main.c" "/Users/maievshabu/study/c/CMakeFiles/bin/Main.dir/src/main.c.o"
   )
-SET(CMAKE_C_COMPILER_ID "GNU")
-
-# Targets to which this target links.
-SET(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/redredmaple/study/src/student/CMakeFiles/Stu.dir/DependInfo.cmake"
-  "/home/redredmaple/study/src/list.1/CMakeFiles/List.dir/DependInfo.cmake"
-  )
+set(CMAKE_C_COMPILER_ID "Clang")
 
 # The include file search paths:
-SET(CMAKE_C_TARGET_INCLUDE_PATH
+set(CMAKE_C_TARGET_INCLUDE_PATH
   )
-SET(CMAKE_CXX_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})
-SET(CMAKE_Fortran_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})
-SET(CMAKE_ASM_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})
+
+# Targets to which this target links.
+set(CMAKE_TARGET_LINKED_INFO_FILES
+  "/Users/maievshabu/study/c/src/student/CMakeFiles/Stu.dir/DependInfo.cmake"
+  "/Users/maievshabu/study/c/src/list.1/CMakeFiles/List.dir/DependInfo.cmake"
+  "/Users/maievshabu/study/c/src/apue/CMakeFiles/APUE.dir/DependInfo.cmake"
+  )
+
+# Fortran module output directory.
+set(CMAKE_Fortran_TARGET_MODULE_DIR "")

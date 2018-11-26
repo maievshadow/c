@@ -9,6 +9,7 @@
         "**/cmake_install.cmake": true,
         "**/CMakeFiles": true,
         "**/lib*.a": true,
-        "**/Makefile": true
+        "**/Makefile": true,
+       // "**/CMakeCache.txt": true
     }
 }
