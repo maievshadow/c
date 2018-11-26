@@ -7,7 +7,7 @@
  *  no head and head node
  *  start loop attention
  * 
- * /
+ **/
 
 void 
 init(pList *head)
