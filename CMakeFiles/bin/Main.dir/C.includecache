@@ -6,7 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/home/redredmaple/study/src/lib/func.c
+/home/redredmaple/study/src/main.c
 stdio.h
+-
+stdlib.h
 -
 

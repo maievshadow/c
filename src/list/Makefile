@@ -72,14 +72,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/redredmaple/study/CMakeFiles /home/redredmaple/study/CMakeFiles/progress.marks
-	$(MAKE) -f CMakeFiles/Makefile2 all
+	cd /home/redredmaple/study && $(CMAKE_COMMAND) -E cmake_progress_start /home/redredmaple/study/CMakeFiles /home/redredmaple/study/src/list/CMakeFiles/progress.marks
+	cd /home/redredmaple/study && $(MAKE) -f CMakeFiles/Makefile2 src/list/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/redredmaple/study/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	$(MAKE) -f CMakeFiles/Makefile2 clean
+	cd /home/redredmaple/study && $(MAKE) -f CMakeFiles/Makefile2 src/list/clean
 .PHONY : clean
 
 # The main clean target
@@ -88,81 +88,56 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	$(MAKE) -f CMakeFiles/Makefile2 preinstall
+	cd /home/redredmaple/study && $(MAKE) -f CMakeFiles/Makefile2 src/list/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	$(MAKE) -f CMakeFiles/Makefile2 preinstall
+	cd /home/redredmaple/study && $(MAKE) -f CMakeFiles/Makefile2 src/list/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/redredmaple/study && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-#=============================================================================
-# Target rules for targets named bin/Main
+# Convenience name for target.
+src/list/CMakeFiles/List.dir/rule:
+	cd /home/redredmaple/study && $(MAKE) -f CMakeFiles/Makefile2 src/list/CMakeFiles/List.dir/rule
+.PHONY : src/list/CMakeFiles/List.dir/rule
 
-# Build rule for target.
-bin/Main: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 bin/Main
-.PHONY : bin/Main
-
-# fast build rule for target.
-bin/Main/fast:
-	$(MAKE) -f CMakeFiles/bin/Main.dir/build.make CMakeFiles/bin/Main.dir/build
-.PHONY : bin/Main/fast
-
-#=============================================================================
-# Target rules for targets named Stu
-
-# Build rule for target.
-Stu: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 Stu
-.PHONY : Stu
-
-# fast build rule for target.
-Stu/fast:
-	$(MAKE) -f src/student/CMakeFiles/Stu.dir/build.make src/student/CMakeFiles/Stu.dir/build
-.PHONY : Stu/fast
-
-#=============================================================================
-# Target rules for targets named List
-
-# Build rule for target.
-List: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 List
+# Convenience name for target.
+List: src/list/CMakeFiles/List.dir/rule
 .PHONY : List
 
 # fast build rule for target.
 List/fast:
-	$(MAKE) -f src/list.1/CMakeFiles/List.dir/build.make src/list.1/CMakeFiles/List.dir/build
+	cd /home/redredmaple/study && $(MAKE) -f src/list/CMakeFiles/List.dir/build.make src/list/CMakeFiles/List.dir/build
 .PHONY : List/fast
 
-src/main.o: src/main.c.o
-.PHONY : src/main.o
+list.o: list.c.o
+.PHONY : list.o
 
 # target to build an object file
-src/main.c.o:
-	$(MAKE) -f CMakeFiles/bin/Main.dir/build.make CMakeFiles/bin/Main.dir/src/main.c.o
-.PHONY : src/main.c.o
+list.c.o:
+	cd /home/redredmaple/study && $(MAKE) -f src/list/CMakeFiles/List.dir/build.make src/list/CMakeFiles/List.dir/list.c.o
+.PHONY : list.c.o
 
-src/main.i: src/main.c.i
-.PHONY : src/main.i
+list.i: list.c.i
+.PHONY : list.i
 
 # target to preprocess a source file
-src/main.c.i:
-	$(MAKE) -f CMakeFiles/bin/Main.dir/build.make CMakeFiles/bin/Main.dir/src/main.c.i
-.PHONY : src/main.c.i
+list.c.i:
+	cd /home/redredmaple/study && $(MAKE) -f src/list/CMakeFiles/List.dir/build.make src/list/CMakeFiles/List.dir/list.c.i
+.PHONY : list.c.i
 
-src/main.s: src/main.c.s
-.PHONY : src/main.s
+list.s: list.c.s
+.PHONY : list.s
 
 # target to generate assembly for a file
-src/main.c.s:
-	$(MAKE) -f CMakeFiles/bin/Main.dir/build.make CMakeFiles/bin/Main.dir/src/main.c.s
-.PHONY : src/main.c.s
+list.c.s:
+	cd /home/redredmaple/study && $(MAKE) -f src/list/CMakeFiles/List.dir/build.make src/list/CMakeFiles/List.dir/list.c.s
+.PHONY : list.c.s
 
 # Help Target
 help:
@@ -170,14 +145,12 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... bin/Main"
+	@echo "... List"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... Stu"
-	@echo "... List"
-	@echo "... src/main.o"
-	@echo "... src/main.i"
-	@echo "... src/main.s"
+	@echo "... list.o"
+	@echo "... list.i"
+	@echo "... list.s"
 .PHONY : help
 
 
@@ -189,6 +162,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/redredmaple/study && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

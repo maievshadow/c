@@ -1,7 +1,7 @@
 #ifndef __STUDENT_H__
 #define __STUDENT_H__
 
-#include <malloc.h>
+#include <stdlib.h>
 
 typedef struct
 {

@@ -1,0 +1,1 @@
+/usr/bin/cc  -g    CMakeFiles/bin/Main.dir/src/main.c.o  -o bin/Main -rdynamic src/student/libStu.a src/list.1/libList.a 

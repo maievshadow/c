@@ -1,2 +1,0 @@
-/usr/bin/ar cr libMod1.a  CMakeFiles/Mod1.dir/func.c.o
-/usr/bin/ranlib libMod1.a

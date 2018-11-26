@@ -3,8 +3,14 @@
 
 #include "list.h"
 
-pList 
-init(void)
+/**
+ *  no head and head node
+ *  start loop attention
+ * 
+ * /
+
+void 
+init(pList *head)
 {
     pList p = NULL;
     p =(pList)malloc(sizeof(List));
@@ -15,8 +21,11 @@ init(void)
     p->data = 0;
     p->next = NULL;
 
+    *head = p;
+
     printf("init\n");
-    return p;
+   //@TODO
+   //*head = NULL;
 }
 
 int
@@ -24,7 +33,7 @@ lenList(pList list)
 { 
     int len = 0;
     pList tmp = list;
-    while (tmp->next != NULL){
+    while (tmp != NULL){
         ++len;
         tmp = tmp->next;
     }
@@ -34,41 +43,37 @@ lenList(pList list)
 }
 
 int 
-insert(pList list,  int locate, type elem)
+insert(pList *head,  int locate, type elem)
 {
     pList p = NULL;
     p = (pList)malloc(sizeof(List));
-    if (NULL == p)
-    {
+    if (NULL == p) {
         printf("malloc error\n");
         exit(0);
     }
     p->data = elem;
     p->next = NULL;
 
-    pList tmp = list;
+    if (NULL == head) {
+        *head = p;
+    } else {
+        pList tmp = *head;
+        while (tmp->next != NULL) {
+            tmp = tmp->next;
+        }
 
+        tmp->next = p;
+        p->next = NULL;
 
-
-
-    int len = 0;
-    while (tmp->next != NULL)
-    {
-        tmp = tmp->next;
+        return 1;
     }
-
-    p->next = tmp->next;
-    tmp->next = p;
-
-    return 1;
 }
 
 int update(pList list, int locate, type elem)
 {
     int len = 0;
     pList tmp = list;
-    while (tmp->next != NULL && len != locate)
-    {
+    while (tmp->next != NULL && len != locate) {
         ++len;
         tmp = tmp->next;
     }
@@ -89,10 +94,14 @@ search(pList list, type elem)
         ++i;
     }
 
+    //@TODO
+    printf("found elem is %d\n", i);
+    /*
     if (p == NULL)
         printf("%d not found\n", elem);
     else
         printf("found elem is %d\n", i);
+        */
     return i;
 }
 
@@ -117,7 +126,7 @@ del(pList list, int locate)
 
 void print(pList list)
 {
-    pList tmp = list->next;
+    pList tmp = list;
     int i = 0;
     while (tmp != NULL){
         printf(" %d --- %d \n", i++, tmp->data);
@@ -128,21 +137,14 @@ void print(pList list)
 void listTest()
 {
     pList list;
-    //list = init();
-    init2(&list);
-    insert2(&list, 1);
+    init(&list);
     int i = 0;
-    for(; i < 3 ; i++)
-        insert(list, i);
-    search(list, 1);
-    print(list);
-    return;
-    lenList(list);
-    search(list, 5);
-    update(list, 1, 100);
-    search(list, 100);
-    del(list,5);
-    lenList(list);
+    for(;i < 3 ; i++) {
+        insert(&list, i, i+1);
+        lenList(list);
+    }
+
+    search(list, 2);
     print(list);
 }
 

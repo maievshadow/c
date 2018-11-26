@@ -8,8 +8,8 @@ typedef struct List{
     struct List* next;
 }List, *pList; //@ TODO
 
-pList 
-init(void);
+void
+init(pList *);
 
 pList
 init2(pList*);
@@ -21,7 +21,7 @@ int
 search(pList, type);
 
 int 
-insert(pList, int, type);
+insert(pList *, int, type);
 
 int
 insert2(pList *, type);
@@ -31,5 +31,8 @@ update(pList, int, type);
 
 int 
 del(pList, int);
+
+void
+print(pList);
 
 #endif

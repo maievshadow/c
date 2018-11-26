@@ -101,14 +101,56 @@ depend:
 	cd /home/redredmaple/study && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
+# Convenience name for target.
+src/student/CMakeFiles/Stu.dir/rule:
+	cd /home/redredmaple/study && $(MAKE) -f CMakeFiles/Makefile2 src/student/CMakeFiles/Stu.dir/rule
+.PHONY : src/student/CMakeFiles/Stu.dir/rule
+
+# Convenience name for target.
+Stu: src/student/CMakeFiles/Stu.dir/rule
+.PHONY : Stu
+
+# fast build rule for target.
+Stu/fast:
+	cd /home/redredmaple/study && $(MAKE) -f src/student/CMakeFiles/Stu.dir/build.make src/student/CMakeFiles/Stu.dir/build
+.PHONY : Stu/fast
+
+student.o: student.c.o
+.PHONY : student.o
+
+# target to build an object file
+student.c.o:
+	cd /home/redredmaple/study && $(MAKE) -f src/student/CMakeFiles/Stu.dir/build.make src/student/CMakeFiles/Stu.dir/student.c.o
+.PHONY : student.c.o
+
+student.i: student.c.i
+.PHONY : student.i
+
+# target to preprocess a source file
+student.c.i:
+	cd /home/redredmaple/study && $(MAKE) -f src/student/CMakeFiles/Stu.dir/build.make src/student/CMakeFiles/Stu.dir/student.c.i
+.PHONY : student.c.i
+
+student.s: student.c.s
+.PHONY : student.s
+
+# target to generate assembly for a file
+student.c.s:
+	cd /home/redredmaple/study && $(MAKE) -f src/student/CMakeFiles/Stu.dir/build.make src/student/CMakeFiles/Stu.dir/student.c.s
+.PHONY : student.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... Stu"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... student.o"
+	@echo "... student.i"
+	@echo "... student.s"
 .PHONY : help
 
 
