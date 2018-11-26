@@ -1,13 +1,10 @@
 src/bin
 src/obj
 
+Makefile
+CMakeFiles/*
+cmake_install.cmake
 CMAkeCache.txt
-CMakeFiles/CMakeDirectoryInformation.cmake
-CMakeFiles/CMakeOutput.log
-CMakeFiles/Makefile.cmake
-CMakeFiles/Makefile2
-CMakeFiles/TargetDirectories.txt
-CMakeFiles/progress.marks
 
 src/*/CMakeFiles/*.*/C.includecache
 src/*/CMakeFiles/*.*/DependInfo.cmake
@@ -31,15 +28,12 @@ CMakeFiles/*/CompilerIdC/CMakeCCompilerId.c
 CMakeFiles/*/CompilerIdC/a.out
 CMakeFiles/*/CompilerIdCXX/CMakeCXXCompilerId.cpp
 CMakeFiles/*/CompilerIdCXX/a.out
-CMakeFiles/bin/Main.dir/DependInfo.cmake
-CMakeFiles/bin/Main.dir/build.make
-CMakeFiles/bin/Main.dir/cmake_clean.cmake
-CMakeFiles/bin/Main.dir/flags.make
-CMakeFiles/bin/Main.dir/link.txt
-CMakeFiles/bin/Main.dir/progress.make
-CMakeFiles/feature_tests.bin
-CMakeFiles/feature_tests.c
-CMakeFiles/feature_tests.cxx
+CMakeFiles/bin/*/DependInfo.cmake
+CMakeFiles/bin/*/build.make
+CMakeFiles/bin/*/cmake_clean.cmake
+CMakeFiles/bin/*/flags.make
+CMakeFiles/bin/*/link.txt
+CMakeFiles/bin/*/progress.make
 
 src/*/CMakeFiles/CMakeDirectoryInformation.cmake
 src/*/CMakeFiles/progress.marks

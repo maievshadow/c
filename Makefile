@@ -162,6 +162,19 @@ APUE/fast:
 	$(MAKE) -f src/apue/CMakeFiles/APUE.dir/build.make src/apue/CMakeFiles/APUE.dir/build
 .PHONY : APUE/fast
 
+#=============================================================================
+# Target rules for targets named lib
+
+# Build rule for target.
+lib: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 lib
+.PHONY : lib
+
+# fast build rule for target.
+lib/fast:
+	$(MAKE) -f src/lib/CMakeFiles/lib.dir/build.make src/lib/CMakeFiles/lib.dir/build
+.PHONY : lib/fast
+
 src/main.o: src/main.c.o
 
 .PHONY : src/main.o
@@ -201,6 +214,7 @@ help:
 	@echo "... Stu"
 	@echo "... List"
 	@echo "... APUE"
+	@echo "... lib"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

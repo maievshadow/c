@@ -37,6 +37,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/Users/maievshabu/study/c/src/student/cmake_install.cmake")
   include("/Users/maievshabu/study/c/src/list.1/cmake_install.cmake")
   include("/Users/maievshabu/study/c/src/apue/cmake_install.cmake")
+  include("/Users/maievshabu/study/c/src/lib/cmake_install.cmake")
 
 endif()
 
