@@ -133,17 +133,10 @@ void listTest()
     insert2(&list, 1);
     int i = 0;
     for(; i < 3 ; i++)
-        insert(list, i);
+        insert(list, i, i+1);
     search(list, 1);
     print(list);
     return;
-    lenList(list);
-    search(list, 5);
-    update(list, 1, 100);
-    search(list, 100);
-    del(list,5);
-    lenList(list);
-    print(list);
 }
 
  

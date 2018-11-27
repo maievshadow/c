@@ -8,7 +8,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/home/redredmaple/study/bin/Main",
+            "program": "",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
