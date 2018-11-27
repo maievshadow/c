@@ -13,4 +13,5 @@ target_link_libraries(bin/Main
 Stu
 List
 APUE
+Maiev
 ) 

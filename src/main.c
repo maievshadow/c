@@ -8,7 +8,7 @@ int main(void)
     //pp();
     */
 
-    listTest();
+    //listTest();
     apue_test();
     return 0;
 }

@@ -13,6 +13,7 @@ SET(CMAKE_TARGET_LINKED_INFO_FILES
   "/home/redredmaple/study/src/student/CMakeFiles/Stu.dir/DependInfo.cmake"
   "/home/redredmaple/study/src/list.1/CMakeFiles/List.dir/DependInfo.cmake"
   "/home/redredmaple/study/src/apue/CMakeFiles/APUE.dir/DependInfo.cmake"
+  "/home/redredmaple/study/src/lib/CMakeFiles/Maiev.dir/DependInfo.cmake"
   )
 
 # The include file search paths:

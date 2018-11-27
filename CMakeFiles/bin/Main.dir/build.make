@@ -87,6 +87,7 @@ bin/Main: CMakeFiles/bin/Main.dir/build.make
 bin/Main: src/student/libStu.a
 bin/Main: src/list.1/libList.a
 bin/Main: src/apue/libAPUE.a
+bin/Main: src/lib/libMaiev.a
 bin/Main: CMakeFiles/bin/Main.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking C executable bin/Main"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/bin/Main.dir/link.txt --verbose=$(VERBOSE)

@@ -3,7 +3,10 @@
         "list.h": "c",
         "malloc.h": "c",
         "stdlib.h": "c",
-        "student.h": "c"
+        "student.h": "c",
+        "apue.h": "c",
+        "stdio.h": "c",
+        "unistd.h": "c"
     },
     "files.exclude": {
         "**/cmake_install.cmake": true,

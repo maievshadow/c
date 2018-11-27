@@ -1,7 +1,7 @@
-#include "apue.h"
 #define BUFFSIZE 4096
+#include <unistd.h>
 
-int
+void
 apue_test(void)
 {
     int n;

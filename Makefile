@@ -154,17 +154,17 @@ APUE/fast:
 .PHONY : APUE/fast
 
 #=============================================================================
-# Target rules for targets named lib
+# Target rules for targets named Maiev
 
 # Build rule for target.
-lib: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 lib
-.PHONY : lib
+Maiev: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Maiev
+.PHONY : Maiev
 
 # fast build rule for target.
-lib/fast:
-	$(MAKE) -f src/lib/CMakeFiles/lib.dir/build.make src/lib/CMakeFiles/lib.dir/build
-.PHONY : lib/fast
+Maiev/fast:
+	$(MAKE) -f src/lib/CMakeFiles/Maiev.dir/build.make src/lib/CMakeFiles/Maiev.dir/build
+.PHONY : Maiev/fast
 
 src/main.o: src/main.c.o
 .PHONY : src/main.o
@@ -202,7 +202,7 @@ help:
 	@echo "... Stu"
 	@echo "... List"
 	@echo "... APUE"
-	@echo "... lib"
+	@echo "... Maiev"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
