@@ -1,6 +1,5 @@
 
 build/
-bin/
 .gitignore
 CMAkeCache.txt
 .vscode/

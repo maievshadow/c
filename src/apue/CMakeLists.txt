@@ -1,10 +1,11 @@
-cmake_minimum_required(VERSION 2.8) 
- add_library(APUE_TEST STATIC
+cmake_minimum_required(VERSION 2.8)
+#set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
+add_subdirectory(lib)
+add_executable(Apue
+    main.c
     apue.c
- )
-#add_executable(bin/Apue
-#    apue.c
-#)
-#target_link_libraries(bin/Apue
-#APUE
-#) 
+)
+
+target_link_libraries(Apue
+APUE
+) 
