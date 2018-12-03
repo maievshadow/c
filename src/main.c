@@ -3,12 +3,6 @@
 
 int main(void)
 {
-    /*
-    run();
-    //pp();
-    */
-
-    //listTest();
     apue_test();
     return 0;
 }

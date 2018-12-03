@@ -6,13 +6,10 @@
         "student.h": "c",
         "apue.h": "c",
         "stdio.h": "c",
-        "unistd.h": "c"
+        "unistd.h": "c",
+        "crypt.h": "c"
     },
     "files.exclude": {
-        "**/cmake_install.cmake": true,
-        "**/CMakeFiles": true,
-        "**/lib*.a": true,
-        "**/Makefile": true,
-       // "**/CMakeCache.txt": true
+    // "**/CMakeCache.txt": true
     }
 }
