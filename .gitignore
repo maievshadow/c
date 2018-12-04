@@ -4,3 +4,4 @@ build/
 CMAkeCache.txt
 .vscode/
 .vscode/*
+lib/

@@ -17,13 +17,13 @@ add_library(APUE_STATIC STATIC
   tellwait.c ttymodes.c writen.c
 )
 
-add_library(APUE SHARED
-  bufargs.c cliconn.c clrfl.c daemonize.c error.c errorlog.c lockreg.c locktest.c
-  nspipe.c openmax.c  pathalloc.c popen.c prexit.c prmask.c ptyfork.c
-  ptyopen.c readn.c recvfd.c semaph.c senderr.c sendfd.c servaccept.c servlisten.c
-  setfd.c  setfl.c signal.c signalintr.c sleep.c sleepus.c spipe.c strerror.c
-  tellwait.c ttymodes.c writen.c
-)
+#add_library(APUE SHARED
+#  bufargs.c cliconn.c clrfl.c daemonize.c error.c errorlog.c lockreg.c locktest.c
+#  nspipe.c openmax.c  pathalloc.c popen.c prexit.c prmask.c ptyfork.c
+#  ptyopen.c readn.c recvfd.c semaph.c senderr.c sendfd.c servaccept.c servlisten.c
+#  setfd.c  setfl.c signal.c signalintr.c sleep.c sleepus.c spipe.c strerror.c
+#  tellwait.c ttymodes.c writen.c
+#)
 
 #INCLUDE_DIRECTORIES(“${PROJECT_SOURCE_DIR}/src/hellolib/include”)
 #头文件目录包含指令
@@ -44,20 +44,20 @@ GET_TARGET_PROPERTY (OUTPUT_VALUE APUE_STATIC OUTPUT_NAME)
 MESSAGE (STATUS "This is the APUE_STATIC OUTPUT_NAME: " ${OUTPUT_VALUE})
 
 SET_TARGET_PROPERTIES(APUE_STATIC PROPERTIES CLEAN_DIRECT_OUTPUT 1)
-SET_TARGET_PROPERTIES(APUE PROPERTIES CLEAN_DIRECT_OUTPUT 1)
-SET_TARGET_PROPERTIES(APUE PROPERTIES VERSION 1.2 SOVERSION 1)
+#SET_TARGET_PROPERTIES(APUE PROPERTIES CLEAN_DIRECT_OUTPUT 1)
+#SET_TARGET_PROPERTIES(APUE PROPERTIES VERSION 1.2 SOVERSION 1)
 
 SET(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -Wall -g -ggdb") # Debug模式下的编译指令
 
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib) #设置库文件的输出目录 
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG ${PROJECT_SOURCE_DIR}/lib)    
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${PROJECT_SOURCE_DIR}/lib) 
+#set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${PROJECT_SOURCE_DIR}/lib) 
 
-INSTALL (TARGETS APUE APUE_STATIC LIBRARY DESTINATION lib
+#INSTALL (TARGETS APUE APUE_STATIC LIBRARY DESTINATION lib
+#
+#ARCHIVE DESTINATION lib)
 
-ARCHIVE DESTINATION lib)
-
-INSTALL (FILES apue.h DESTINATION include/apue)
+#INSTALL (FILES apue.h DESTINATION include/apue)
 
 
-#INSTALL (TARGETS APUE LIBRARY DESTINATION $(PROJECT_BINARY_DIR)/lib)
+INSTALL (TARGETS APUE_STATIC ARCHIVE DESTINATION $(PROJECT_BINARY_DIR)/lib)
