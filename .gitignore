@@ -5,3 +5,4 @@ CMAkeCache.txt
 .vscode/
 .vscode/*
 lib/
+src/test/

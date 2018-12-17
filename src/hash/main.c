@@ -38,7 +38,7 @@ main(int argc, char ** argv)
 	hashtable_add(ht, "M", "50");
 	hashtable_add(ht, "N", "60");
 
-	printf("%s", (char*)hashtable_get(ht, "L"));
+	printf("%s", (char*)hashtable_get(ht, "M"));
     printf("\nend\r\n");
 
 	return 0;
