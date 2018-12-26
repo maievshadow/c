@@ -1,0 +1,2 @@
+/usr/bin/ar cr libStu.a  CMakeFiles/Stu.dir/student.c.o
+/usr/bin/ranlib libStu.a

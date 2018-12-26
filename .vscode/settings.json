@@ -1,0 +1,15 @@
+{
+    "files.associations": {
+        "list.h": "c",
+        "malloc.h": "c",
+        "stdlib.h": "c",
+        "student.h": "c",
+        "apue.h": "c",
+        "stdio.h": "c",
+        "unistd.h": "c",
+        "crypt.h": "c"
+    },
+    "files.exclude": {
+    // "**/CMakeCache.txt": true
+    }
+}
