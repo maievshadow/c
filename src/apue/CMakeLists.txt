@@ -1,9 +1,12 @@
 cmake_minimum_required(VERSION 2.8)
+#add_definitions("-g -Wall") # <= 新增的编译选项
 #add_subdirectory(include)
 #include_directories(/usr/local/include/apue)
 #add_executable(Apue main.c)
-add_executable(Serv server.c)
+#add_executable(Serv server.c)
+#set(CMAKE_EXE_LINKER_FLAGS "-lpthread")
+add_executable(Thread thread.c)
+#add_executable(File file.c)
 #add_executable(Client client.c)
-
-#target_link_libraries(Apue APUE_STATIC)
-
+#target_link_libraries(Apue APUE_STATIC pthread)
+target_link_libraries(Thread pthread)
