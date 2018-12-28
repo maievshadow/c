@@ -6,3 +6,5 @@ CMAkeCache.txt
 .vscode/*
 lib/
 src/test/
+.idea/
+cmake-build-debug/

@@ -51,7 +51,6 @@ int* twoSum(int* nums, int numsSize, int target) {
     
     for (;i < numsSize; i++)
     {
-        j = i + 1;
         for (j = i + 1; j < numsSize; j++){
             if (nums[i] + nums[j] == target){
                 
