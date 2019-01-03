@@ -80,15 +80,41 @@ static void adjust(struct ListNode* l)
         int tmp = p->val;
         elem = tmp % 10 + nextAdd;
 
-        if (tmp >= 10){
+        if (tmp >= 10 || elem >= 10){
             nextAdd = 1;
         }else{
             nextAdd = 0;
         }
 
-        p->val = elem;
+        p->val = elem % 10;
         p = p->next;
     }
+
+    //@TODO BUG BUG.....
+
+    /*
+    [1]
+    [9,9]
+    Output
+    [0,10]
+    Expected
+    [0,0,1]
+    */
+
+    if (nextAdd == 1){
+        struct ListNode * newNode = newListNode();
+        newNode->val = 1;
+        newNode->next = NULL;
+        p = l;
+        while(p != NULL){
+            p = p->next;
+        }
+
+        newNode->next = p->next;
+        p->next = newNode;
+        p->next = newNode;
+    }
+
     return ;
 }
 
