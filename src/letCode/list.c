@@ -7,34 +7,34 @@
 #include <stdio.h>
 #include <string.h>
 
-static ListNode* newListNode(void * elem)
+//注意这里表头的原因。一定要注意～
+
+struct ListNode* newListNode()
 {
-    ListNode* l = malloc(sizeof(ListNode));
+    struct ListNode* l = malloc(sizeof(struct ListNode));
 
     l->next = NULL;
     l->val = 0;
-
-    if (elem != NULL){
-        l->val = (int)elem;
-    }
 
     return l;
 }
 
 //head
-ListNode * initList()
+struct ListNode * initList()
 {
-    return  newListNode(NULL);
+    struct ListNode * l = newListNode(NULL);
+
+    return l;
 }
 
-int lenList(ListNode* node)
+int lenList(struct ListNode* node)
 {
     int len = 0;
     if (node == NULL){
         return 0;
     }
 
-    ListNode * tmp = node;
+    struct ListNode * tmp = node;
     while(tmp->next != NULL){
         ++len;
         tmp = tmp->next;
@@ -43,19 +43,20 @@ int lenList(ListNode* node)
     return len;
 }
 
-int insertList(ListNode * node, int locate, int elem)
+
+int insertList(struct ListNode * node, int locate, int elem)
 {
     if (lenList(node) > locate){
         printf("over boundary\n");
         return 0;
     }
 
-    ListNode * cur = node;
-    ListNode * newNode = newListNode((void*)elem);
+    struct ListNode * cur = node;
+    struct ListNode * newNode = newListNode();
+    newNode->val = elem;
 
-    if (cur->next == NULL){
-        cur->next = newNode;
-
+    if (locate == 0 ){
+        node->val = elem;
         return 0;
     }
 
@@ -69,43 +70,86 @@ int insertList(ListNode * node, int locate, int elem)
     return 1;
 }
 
-int destoryList(ListNode *l)
+static void adjust(struct ListNode* l)
 {
-   return 0;
+    int elem = 0;
+    int nextAdd = 0;
+    struct ListNode *p = l;
+
+    while(p != NULL){
+        int tmp = p->val;
+        elem = tmp % 10 + nextAdd;
+
+        if (tmp >= 10){
+            nextAdd = 1;
+        }else{
+            nextAdd = 0;
+        }
+
+        p->val = elem;
+        p = p->next;
+    }
+    return ;
 }
 
-void prList(ListNode *l)
+static void insert(struct ListNode* l, struct ListNode *h1, struct ListNode *h2, int locate)
+{
+    int elem = 0;
+
+    if (h1 != NULL && h2 != NULL){
+        elem = h1->val + h2->val;
+    }else if (h1 != NULL){
+        elem = h1->val;
+    }else if (h2 != NULL){
+        elem = h2->val;
+    }
+
+    insertList(l, locate, elem);
+
+    return;
+}
+
+struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2) {
+
+    struct ListNode * h1 = l1;
+    struct ListNode * h2 = l2;
+    struct ListNode * l3 = newListNode();
+    int locate = 0;
+
+    //l1 and l2 has the same length;
+    while(h1 != NULL && h2 != NULL){
+        insert(l3, h1, h2, locate++);
+        h1 = h1->next;
+        h2 = h2->next;
+    }
+
+    while (h1 != NULL){
+        insert(l3, h1, NULL, locate++);
+        h1 = h1->next;
+    }
+
+    while (h2 != NULL){
+        insert(l3, NULL, h2, locate++);
+        h2 = h2->next;
+    }
+
+    adjust(l3);
+
+    return l3;
+
+}
+
+void prList(struct ListNode *l)
 {
     static int i = 0;
     printf("l%d:", ++i);
-    while(l->next != NULL)
+    while(l != NULL)
     {
-        l = l->next;
         printf("%d", l->val);
+        l = l->next;
     }
     printf("\n");
 }
 
-ListNode* addTwoNumbers2(ListNode* l1, ListNode* l2)
-{
-    prList(l1);
-    prList(l2);
 
-    ListNode * p1 = l1->next;
-    ListNode * p2 = l2->next;
-    ListNode * l3 = newListNode(NULL);
-    int i = 0;
-
-    while(p1->next != NULL && p2->next != NULL){
-        insertList(l3, i++, (p1->val + p2->val)%10);
-        p1 = p1->next;
-        p2 = p2->next;
-    }
-
-    insertList(l3, i++, (p1->val + p2->val)%10);
-
-    prList(l3);
-
-    return l3;
-}
 

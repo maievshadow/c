@@ -24,20 +24,18 @@ void sum_test(int argc, char ** argv)
 void list_test(int argc, char ** argv)
 {
     //l
-    ListNode * l = initList();
-    insertList(l, 0, 2);
-    insertList(l, 1, 4);
-    insertList(l, 2, 3);
 
-    //l1
-    ListNode * l1 = initList();
+    struct ListNode * l1 = initList();
+    struct ListNode * l2 = initList();
+
     insertList(l1, 0, 5);
-    insertList(l1, 1, 6);
-    insertList(l1, 2, 3);
+    insertList(l2, 0, 5);
 
-    //add l and l1
-    addTwoNumbers2(l, l1);
+    struct ListNode * l3 = addTwoNumbers(l1, l2);
 
+    prList(l1);
+    prList(l2);
+    prList(l3);
 }
 
 

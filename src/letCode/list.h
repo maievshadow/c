@@ -24,23 +24,21 @@
  * };
  */
 
-typedef struct ListNode {
+struct ListNode {
     int val;
     struct ListNode *next;
-}ListNode;
+};
 
-ListNode * initList();
+struct ListNode * initList();
 
-ListNode* addTwoNumbers2(ListNode* l1, ListNode* l2);
+int destoryList(struct ListNode *);
 
-int destoryList(ListNode *);
+int insertList(struct ListNode *, int, int);
 
-int insertList(ListNode *, int, int);
+void prList(struct ListNode *);
 
-void prList(ListNode *);
+int lenList(struct ListNode *);
 
-int lenList(ListNode *);
-
-//struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2);
+struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2);
 
 #endif //PROJECT_LIST_H
