@@ -8,6 +8,7 @@
 #include <string.h>
 
 //注意这里表头的原因。一定要注意～
+//@TODO 没有考虑释放内存
 
 struct ListNode* newListNode()
 {
@@ -78,6 +79,7 @@ static void adjust(struct ListNode* l)
 
     while(p != NULL){
         int tmp = p->val;
+        /*
         elem = tmp % 10 + nextAdd;
 
         if (tmp >= 10 || elem >= 10){
@@ -86,33 +88,29 @@ static void adjust(struct ListNode* l)
             nextAdd = 0;
         }
 
-        p->val = elem % 10;
+         elem = elem % 10;
+        */
+
+        elem = (tmp +nextAdd)%10;
+        nextAdd = (tmp +nextAdd)/10;
+
+        p->val = elem;
         p = p->next;
     }
-
-    //@TODO BUG BUG.....
-
-    /*
-    [1]
-    [9,9]
-    Output
-    [0,10]
-    Expected
-    [0,0,1]
-    */
 
     if (nextAdd == 1){
         struct ListNode * newNode = newListNode();
         newNode->val = 1;
         newNode->next = NULL;
-        p = l;
+
+        struct ListNode *pre = l;
+        p = l->next;
         while(p != NULL){
+            pre = p;
             p = p->next;
         }
 
-        newNode->next = p->next;
-        p->next = newNode;
-        p->next = newNode;
+        pre->next = newNode;
     }
 
     return ;
