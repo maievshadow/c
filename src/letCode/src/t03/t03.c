@@ -9,7 +9,7 @@
 
 #include "t03.h"
 
-#define MAX_LINE 100
+#define MAX_LINE 1000
 #define MAX_SIZE 1000
 
 int inSubString(char * str, char ch)
@@ -32,78 +32,132 @@ int maxLenStr(char **str, int len)
     char maxStr[MAX_SIZE];
     int curLen = 0;
 
+    strcpy(maxStr,str[0]);
+
     while(i <= len){
         curLen = strlen(str[i]);
         if (curLen > maxLen){
             maxLen = curLen;
             strcpy(maxStr, str[i]);
         }
-
+        printf("maxLen %d maxStr %s curStr %s, curLen %d \n", maxLen, maxStr, str[i], curLen);
         free(str[i]);
         i++;
     }
 
-    free(str);
+    //free(str);
     return strlen(maxStr);
 }
 
 //@TODO ???????????????????
-char * addString(char * str, char *ch)
+char * addString(char * s1, char * s2)
 {
-    int len = strlen(str);
-    char * str2 = malloc(sizeof(len + 1));
+    /*
+    char *result = malloc(strlen(s1)+strlen(s2)+1);//+1 for the zero-terminator
+    //in real code you would check for errors in malloc here
+    if (result == NULL) exit (1);
 
-    strcat(str2, str); //????????????????
-    strcat(str2, ch); //???????????????
+    strcpy(result, s1);
+    strcat(result, s2);
+    return result;
+    */
 
-    return str2;
+    while (*s1 != '\0') {
+        s1++;
+    }
+    while ((*s1++ = *s2++) != '\0') {
+        ;
+    }
+
+    return NULL;
 }
 
 char * resetCurLongest(char * str, char ch)
 {
+    memset(str, 0, sizeof(char));
     str[0] = ch;
     str[1] = '\0';
 
-    return str;
+    return NULL;
+}
+
+int copyToLongestStr(char *str, int num, char * longest)
+{
+    return strncpy(longest, str, num);
+}
+
+
+int lengthOfLongestSubstring(char * str)
+{
+    char *start = str;
+    char *end;
+    char curLongest[MAX_SIZE];
+    char longStr[MAX_SIZE];
+
+    int len = strlen(str);
+
+    if (len <= 1){
+        return len;
+    }
+
+    while(*start != '\0') {
+        end = start + 1;
+        while (*end != '\0') {
+            if (*end != *start) {
+                end++;
+            } else{
+                break;
+            }
+        }
+
+        copyToLongestStr(start, end - start, curLongest);
+
+        if (strlen(curLongest) > strlen(longStr)) {
+            strcpy(longStr, curLongest);
+        }
+
+        start++;
+    }
+
+    return strlen(longStr);
 }
 
 //@TODO ???????????????????????????
-int lengthOfLongestSubstring(char *str)
+int lengthOfLongestSubstring2(char *str)
 {
-    char *curLongest = malloc(sizeof(char) * MAX_SIZE);
-    char ** longstr = malloc(sizeof(char*)*MAX_LINE);
+    //char *curLongest = malloc(sizeof(char) * MAX_SIZE);
+    //char ** longstr = malloc(sizeof(char*)*MAX_LINE);
+    char curLongest[MAX_SIZE];
+    char *longstr[MAX_LINE];
     int len = 0;
     char * pstr = str;
+    char * pstr1 = str;
+    memset(curLongest, 0 ,sizeof(char));
     while( *pstr != '\0') {
         if (inSubString(curLongest, *pstr)) {
-            longstr[len] = malloc(sizeof(char) * 50);
+            longstr[len] = malloc(sizeof(char) * MAX_SIZE);
             strcpy(longstr[len++], curLongest);
-            curLongest = resetCurLongest(curLongest, *pstr++);
+            resetCurLongest(curLongest, *pstr++);
             continue;
         }
 
-        char ch[1];
+        char ch[2];
         sprintf(ch, "%c", *pstr);
-
-        char *ch2 = addString(curLongest, ch);
-        strcpy(curLongest, ch2); //???????????????
-        free(ch2);
-        //curLongest = addString(curLongest, ch);
+        addString(curLongest, ch);
         pstr++;
+
+        longstr[len] = malloc(sizeof(char) * MAX_SIZE);
+        strcpy(longstr[len], curLongest);
     }
 
-    longstr[len] = malloc(sizeof(char) * 50);
-    strcpy(longstr[len], curLongest);
-
-    free(curLongest);
     return maxLenStr(longstr, len);
 }
 
 void t03(int argc, char ** argv)
 {
-    char * str = "kmtnycpdwdme";
+    char str[MAX_SIZE] = "dvdf";
     int len = 0;
-    len = lengthOfLongestSubstring(str);
+    len = lengthOfLongestSubstring2(str);
     printf("%d\n", len);
     return;
 }
