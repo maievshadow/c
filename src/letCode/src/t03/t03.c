@@ -128,10 +128,10 @@ int lengthOfLongestSubstring2(char *str)
     //char *curLongest = malloc(sizeof(char) * MAX_SIZE);
     //char ** longstr = malloc(sizeof(char*)*MAX_LINE);
     char curLongest[MAX_SIZE];
-    char *longstr[MAX_LINE];
+    char * longstr[MAX_LINE];
     int len = 0;
     char * pstr = str;
-    char * pstr1 = str;
+
     memset(curLongest, 0 ,sizeof(char));
     while( *pstr != '\0') {
         if (inSubString(curLongest, *pstr)) {
@@ -145,10 +145,10 @@ int lengthOfLongestSubstring2(char *str)
         sprintf(ch, "%c", *pstr);
         addString(curLongest, ch);
         pstr++;
-
-        longstr[len] = malloc(sizeof(char) * MAX_SIZE);
-        strcpy(longstr[len], curLongest);
     }
+
+    longstr[len] = malloc(sizeof(char) * MAX_SIZE);
+    strcpy(longstr[len], curLongest);
 
     return maxLenStr(longstr, len);
 }
