@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <math.h>
 #include <assert.h>
 
 #include "t03.h"
@@ -73,8 +74,45 @@ char * resetCurLongest(char * str, char ch)
     return NULL;
 }
 
+int lengthOfLongestSubstring(char *s)
+{
+    int n = strlen(s);
+    if (0==n)
+        return 0;
+    if (1==n)
+        return 1;
+
+    int ret = 1;
+    int arr[256] = {-1};
+    memset(arr, -1, 256*sizeof(int));
+    arr[s[0]] = 0;
+    int i = 0;
+    int j = 1;
+    for (;i<n;)
+    {
+        if (j<n && arr[s[j]]==-1)
+        {
+            arr[s[j]] = j;
+            ret = (ret > j-i+1)?ret:(j-i+1);
+            j++;
+            if (j==n)
+                break;
+        }
+        else
+        {
+            int t = arr[s[j]];
+            int k;
+            for (k=i; k<=t; ++k)
+                arr[s[k]] = -1;
+            i = t + 1;
+        }
+    }
+
+    return ret;
+}
+
 //@TODO ???????????????????????????
-int lengthOfLongestSubstring(char *str)
+int lengthOfLongestSubstring2(char *str)
 {
     char curLongest[MAX_SIZE];
     char * longstr[MAX_LINE];
@@ -91,7 +129,7 @@ int lengthOfLongestSubstring(char *str)
     memset(lastLongStr, 0 ,sizeof(char));
 
     while( *p1 != '\0') {
-        p2 = p1;
+        p2 = p1+1;
         while(p2 != '\0'){
             if (inSubString(curLongest, *p2)) {
                 if (strlen(lastLongStr) <= strlen(curLongest)){
@@ -121,14 +159,30 @@ int lengthOfLongestSubstring(char *str)
     return strlen(lastLongStr);
 }
 
+int reverse(int x) {
+    int rev[MAX_SIZE] = {0};
+    int i = 0;
+    int y = 0;
+    int ret = 0;
+
+    while (x !=  0){
+        y = x % 10;
+        x = x / 10;
+        rev[i++] = y;
+    }
+
+    return ret;
+}
+
 void t03(int argc, char ** argv)
 {
-    char str[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNO";
+    //char str[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNO";
     //char str[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~ ";
     //char str[] = "\\]^_`{|}~ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"#$%&'()*+,-./:;<=>?@";
 
     int len = 0;
-    len = lengthOfLongestSubstring(str);
-    printf("%d\n", len);
+    //len = lengthOfLongestSubstring(str);
+
+    reverse(1534236469);
     return;
 }
