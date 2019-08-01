@@ -1,0 +1,13 @@
+cmake_minimum_required(VERSION 2.8)
+project(c C)
+set(CMAKE_C_STANDARD 99)
+set(CMAKE_BUILD_TYPE Debug)
+add_executable(Main main.c)
+target_link_libraries(Main Stack)
+#set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
+#add_subdirectory(src/apue)
+#add_subdirectory(src/hash)
+#add_subdirectory(src/test)
+#add_subdirectory(src/tree)
+add_subdirectory(src/stack)
+
