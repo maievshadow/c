@@ -1,0 +1,2 @@
+/usr/bin/ar cr libList.a  CMakeFiles/List.dir/list.c.o
+/usr/bin/ranlib libList.a

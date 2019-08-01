@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/redredmaple/study/src/student/student.c
+stdio.h
+-
+stdlib.h
+-
+student.h
+/home/redredmaple/study/src/student/student.h
+
+/home/redredmaple/study/src/student/student.h
+stdlib.h
+-
+
