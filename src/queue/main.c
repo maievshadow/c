@@ -9,9 +9,11 @@ main(int argc, char ** argv)
     elemType data = 10;
     QueueList list;
     initQueue(&list);
-    isEmptyQueue(&list);
+    printf("%d\r\n", isEmptyQueue(&list));
+    /*
     for(;data < 20;)
         pushQueue(&list, ++data);
+        */
     visitQueue(&list);
     for(i = 0; i < 5 ; i++)
         printf("%d\r\n", popQueue(&list));

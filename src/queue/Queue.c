@@ -6,7 +6,7 @@
 #include <string.h>
 #include "Queue.h"
 
-void initQueue(QueueListPtr list)
+void initQueue(QueueListPtr queue)
 {
     /*
     list = malloc(sizeof(QueueList));
@@ -16,18 +16,18 @@ void initQueue(QueueListPtr list)
     }
      */
 
-    list->front = malloc(sizeof(QueueNode));
-    if (NULL == list->front){
+    queue->front = malloc(sizeof(QueueNode));
+    if (NULL == queue->front){
         printf("malloc error\n");
         return;
     }
 
-    list->rear = list->front;
-    list->front->next = NULL;
+    queue->rear = queue->front;
+    queue->front->next = NULL;
 
     return;
 }
-void pushQueue(QueueListPtr list, elemType data)
+void pushQueue(QueueListPtr queue, elemType data)
 {
     QueueNodePtr node = malloc(sizeof(QueueNode));
     if (NULL == node){
@@ -35,8 +35,8 @@ void pushQueue(QueueListPtr list, elemType data)
         return;
     }
 
-    list->rear->next = node;
-    list->rear = node;
+    queue->rear->next = node;
+    queue->rear = node;
 
     node->data =data;
     node->next = NULL;
@@ -45,25 +45,25 @@ void pushQueue(QueueListPtr list, elemType data)
     return;
 }
 
-elemType popQueue(QueueListPtr list)
+elemType popQueue(QueueListPtr queue)
 {
-    if (isEmptyQueue(list)){
+    if (isEmptyQueue(queue)){
         printf("empty queue\r\n");
         return 0;
     }
 
-    QueueNodePtr node = list->front->next;
+    QueueNodePtr node = queue->front->next;
     elemType  data = node->data;
 
-    list->front->next = node->next;
+    queue->front->next = node->next;
     free(node);
 
     return data;
 }
 
-int isEmptyQueue(QueueListPtr list)
+int isEmptyQueue(QueueListPtr queue)
 {
-    if (list->front  == list->rear) {
+    if (queue->front  == queue->rear) {
         return 1;
     } else {
         return 0;
@@ -72,9 +72,10 @@ int isEmptyQueue(QueueListPtr list)
 
 void visitQueue(QueueListPtr queue)
 {
+    printf("visit\r\n");
     QueueNodePtr node = queue->front->next;
     while(node != NULL){
-        printf("visit - %d\r\n", node->data);
+        printf("%d\r\n", node->data);
         node = node->next;
     }
     return;
