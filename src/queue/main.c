@@ -15,6 +15,6 @@ main(int argc, char ** argv)
     visitQueue(&list);
     for(i = 0; i < 5 ; i++)
         printf("%d\r\n", popQueue(&list));
-    isEmptyQueue(&list);
+    visitQueue(&list);
 	return 0;
 }
