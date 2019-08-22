@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include "src/stack/stack.h"
+#include "stack.h"
 
 int main(void)
 {
