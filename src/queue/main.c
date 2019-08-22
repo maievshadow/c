@@ -6,11 +6,11 @@ int
 main(int argc, char ** argv)
 {
     int i;
-    elemType data = 10;
     QueueList list;
     initQueue(&list);
     printf("%d\r\n", isEmptyQueue(&list));
     /*
+    elemType data = 10;
     for(;data < 20;)
         pushQueue(&list, ++data);
         */

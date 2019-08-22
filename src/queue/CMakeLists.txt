@@ -3,5 +3,6 @@ cmake_minimum_required(VERSION 2.8)
 add_definitions("-g -Wall") # <= 新增的编译选项
 add_executable(Queue
         main.c
-        Queue.c
+        Queue.c,
+        Queue2.c
 )
