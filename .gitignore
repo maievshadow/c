@@ -6,3 +6,8 @@ CMAkeCache.txt
 .vscode/*
 lib/
 src/test/
+src/*/CMakeFiles/*.dir/*
+src/*/CMakeFiles/progress.marks
+src/*/Makefile
+src/*/cmake_install.cmake
+src/*/*.a

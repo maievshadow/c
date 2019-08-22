@@ -1,1 +1,0 @@
-/usr/bin/cc  -g    CMakeFiles/Queue.dir/main.c.o CMakeFiles/Queue.dir/Queue.c.o  -o Queue -rdynamic 
