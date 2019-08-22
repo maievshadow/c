@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/redredmaple/study/c/src/queue/Queue.c
+stdio.h
+-
+malloc.h
+-
+string.h
+-
+Queue.h
+/home/redredmaple/study/c/src/queue/Queue.h
+
+/home/redredmaple/study/c/src/queue/Queue.h
+
+/home/redredmaple/study/c/src/queue/main.c
+stdlib.h
+-
+stdio.h
+-
+Queue.h
+/home/redredmaple/study/c/src/queue/Queue.h
+
