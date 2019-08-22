@@ -18,5 +18,6 @@ main(int argc, char ** argv)
     for(i = 0; i < 5 ; i++)
         printf("%d\r\n", popQueue(&list));
     visitQueue(&list);
+
 	return 0;
 }
