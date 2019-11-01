@@ -1,24 +1,11 @@
 #include <stdio.h>
 #include <string.h>
 #include <malloc.h>
-#include <sys/types.h>
- #include <sys/stat.h>
- #include <fcntl.h>
+#include "sortArray.h"
 
-double findMedianSortedArrays(int* nums1, int nums1Size, int* nums2, int nums2Size);
-
-int main(void)
-{
-    int a[] = {1,3};
-    int b[] = {2};
-
-    double c = findMedianSortedArrays(a, sizeof(a)/sizeof(int), b, sizeof(b)/sizeof(int));
-
-    printf("%.f\r\n", c);
-    return 0;
-}
-
-
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
 double findMedianSortedArrays(int* nums1, int nums1Size, int* nums2, int nums2Size){
 
     int *p = malloc((sizeof(int)* (nums1Size + nums2Size)));
