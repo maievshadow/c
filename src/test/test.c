@@ -1,60 +1,128 @@
-#include <stdio.h>
+/* For sockaddr_in */
+#include <netinet/in.h>
+/* For socket functions */
+#include <sys/socket.h>
+
+#include <unistd.h>
 #include <string.h>
-#include <malloc.h>
-#include <sys/types.h>
- #include <sys/stat.h>
- #include <fcntl.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-double findMedianSortedArrays(int* nums1, int nums1Size, int* nums2, int nums2Size);
+#define MAX_LINE 16384
 
-int main(void)
+char
+rot13_char(char c)
 {
-    int a[] = {1,3};
-    int b[] = {2};
+    /* We don't want to use isalpha here; setting the locale would change
+     * which characters are considered alphabetical. */
+    if ((c >= 'a' && c <= 'm') || (c >= 'A' && c <= 'M'))
+        return c + 13;
+    else if ((c >= 'n' && c <= 'z') || (c >= 'N' && c <= 'Z'))
+        return c - 13;
+    else
+        return c;
+}
 
-    double c = findMedianSortedArrays(a, sizeof(a)/sizeof(int), b, sizeof(b)/sizeof(int));
+void
+child(int fd)
+{
+    char outbuf[MAX_LINE+1];
+    size_t outbuf_used = 0;
+    ssize_t result;
 
-    printf("%.f\r\n", c);
+    while (1) {
+        char ch;
+        result = recv(fd, &ch, 1, 0);
+        if (result == 0) {
+            break;
+        } else if (result == -1) {
+            perror("read");
+            break;
+        }
+
+        /* We do this test to keep the user from overflowing the buffer. */
+        if (outbuf_used < sizeof(outbuf)) {
+            outbuf[outbuf_used++] = rot13_char(ch);
+        }
+
+        if (ch == '\n') {
+            send(fd, outbuf, outbuf_used, 0);
+            outbuf_used = 0;
+            continue;
+        }
+    }
+}
+
+void
+run(void)
+{
+    int listener;
+    struct sockaddr_in sin;
+
+    sin.sin_family = AF_INET;
+    sin.sin_addr.s_addr = 0;
+    sin.sin_port = htons(40713);
+
+    listener = socket(AF_INET, SOCK_STREAM, 0);
+
+#ifndef WIN32
+    {
+        int one = 1;
+        setsockopt(listener, SOL_SOCKET, SO_REUSEADDR, &one, sizeof(one));
+    }
+#endif
+
+    if (bind(listener, (struct sockaddr*)&sin, sizeof(sin)) < 0) {
+        perror("bind");
+        return;
+    }
+
+    if (listen(listener, 16)<0) {
+        perror("listen");
+        return;
+    }
+
+    while (1) {
+        struct sockaddr_storage ss;
+        socklen_t slen = sizeof(ss);
+        int fd = accept(listener, (struct sockaddr*)&ss, &slen);
+        if (fd < 0) {
+            perror("accept");
+        } else {
+            if (fork() == 0) {
+                child(fd);
+                exit(0);
+            }
+        }
+    }
+}
+
+#define MAIEV
+
+#define MAXLINE 100
+
+int
+main(int c, char **v)
+{
+    int n,fd[2];
+    pid_t pid;
+
+    char line[MAXLINE];
+
+    if (pipe(fd) < 0)
+        perror("PIPE:EROR");
+
+    if ((pid=fork()) < 0)
+        perror("FORK:EROR");
+    else if (pid > 0){
+        close(fd[0]);
+        write(fd[1], "helloworld", 12);
+    }else{
+        close(fd[1]);
+        n = read(fd[0], line, MAXLINE);
+        write(STDOUT_FILENO, line, n);
+        exit(0);
+    }
+//    run();
     return 0;
 }
-
-
-double findMedianSortedArrays(int* nums1, int nums1Size, int* nums2, int nums2Size){
-
-    int *p = malloc((sizeof(int)* (nums1Size + nums2Size)));
-    if (p == NULL){
-        return 0;
-    }
-
-    printf("%d-%d\n", nums1Size, nums2Size);
-    int i = 0, j = 0, k = 0;
-
-    while (i < nums1Size && j < nums2Size){
-        if (nums1[i] < nums2[j]){
-            *(p+k)= nums1[i++];
-        }else{
-            *(p+k) = nums2[j++];
-        }
-        ++k;
-    }
-
-    while(i<nums1Size){
-        p[k++] = nums1[i++];
-    }
-
-    while(j<nums2Size){
-        p[k++] = nums2[j++];
-    }
-
-    i = 0; j = k - 1;
-    int mid = i + (j - i) / 2;
-
-    printf("mid %d\n", mid);
-
-    if (mid %2 == 0){
-        return *(p+mid -1);
-    }else{
-        return (*(p+mid -1) + *(p+mid) )/2.0;
-    }
-}
-
