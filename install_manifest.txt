@@ -1,5 +1,6 @@
 /usr/local/lib/libMAIEV.so.1.2
 /usr/local/lib/libMAIEV.so.1
 /usr/local/lib/libMAIEV.so
+/usr/local/lib/libMAIEV.a
 /usr/local/include/maiev/maiev.h
 /usr/local/include/maiev/apue.h
