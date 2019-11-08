@@ -15,5 +15,4 @@ add_executable(MAIEV
         )
 
 target_link_libraries(MAIEV -lMAIEV)
-
-#target_link_libraries(MAIEV libMAIEV.a)
+target_link_libraries(MAIEV libMAIEV.a)
