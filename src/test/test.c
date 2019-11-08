@@ -1,50 +1,128 @@
-#include <stdio.h>
+/* For sockaddr_in */
+#include <netinet/in.h>
+/* For socket functions */
+#include <sys/socket.h>
+
+#include <unistd.h>
 #include <string.h>
-#include <malloc.h>
-#include <sys/types.h>
- #include <sys/stat.h>
- #include <fcntl.h>
+#include <stdio.h>
+#include <stdlib.h>
 
+#define MAX_LINE 16384
 
-int main()
+char
+rot13_char(char c)
 {
-	
-//int open(const char *pathname, int flags);
-	int fd = open("CMakeCache.txt", O_RDONLY);
-	if (fd == -1){
-		perror("open");
-	}
+    /* We don't want to use isalpha here; setting the locale would change
+     * which characters are considered alphabetical. */
+    if ((c >= 'a' && c <= 'm') || (c >= 'A' && c <= 'M'))
+        return c + 13;
+    else if ((c >= 'n' && c <= 'z') || (c >= 'N' && c <= 'Z'))
+        return c - 13;
+    else
+        return c;
+}
 
-	int a = 1;
+void
+child(int fd)
+{
+    char outbuf[MAX_LINE+1];
+    size_t outbuf_used = 0;
+    ssize_t result;
 
-	pid_t pid;
+    while (1) {
+        char ch;
+        result = recv(fd, &ch, 1, 0);
+        if (result == 0) {
+            break;
+        } else if (result == -1) {
+            perror("read");
+            break;
+        }
 
-	pid = fork();
+        /* We do this test to keep the user from overflowing the buffer. */
+        if (outbuf_used < sizeof(outbuf)) {
+            outbuf[outbuf_used++] = rot13_char(ch);
+        }
 
-	if (pid > 0){
-		exit(0);
-	}
+        if (ch == '\n') {
+            send(fd, outbuf, outbuf_used, 0);
+            outbuf_used = 0;
+            continue;
+        }
+    }
+}
 
-	pid = setsid();
-	//pid = fork();
-	if (pid == -1){
-		exit(0);
-	}
+void
+run(void)
+{
+    int listener;
+    struct sockaddr_in sin;
 
-	chdir("/");
+    sin.sin_family = AF_INET;
+    sin.sin_addr.s_addr = 0;
+    sin.sin_port = htons(40713);
 
-	for(a;a<3;a++){
-		close(a);
-	}
+    listener = socket(AF_INET, SOCK_STREAM, 0);
 
-	open("/dev/null", O_RDONLY);
-	dup(0);
-	dup(0);
+#ifndef WIN32
+    {
+        int one = 1;
+        setsockopt(listener, SOL_SOCKET, SO_REUSEADDR, &one, sizeof(one));
+    }
+#endif
 
-	while(1)
-	{
-		sleep(1);
-	}
-		
-	return 0;
+    if (bind(listener, (struct sockaddr*)&sin, sizeof(sin)) < 0) {
+        perror("bind");
+        return;
+    }
+
+    if (listen(listener, 16)<0) {
+        perror("listen");
+        return;
+    }
+
+    while (1) {
+        struct sockaddr_storage ss;
+        socklen_t slen = sizeof(ss);
+        int fd = accept(listener, (struct sockaddr*)&ss, &slen);
+        if (fd < 0) {
+            perror("accept");
+        } else {
+            if (fork() == 0) {
+                child(fd);
+                exit(0);
+            }
+        }
+    }
+}
+
+#define MAIEV
+
+#define MAXLINE 100
+
+int
+main(int c, char **v)
+{
+    int n,fd[2];
+    pid_t pid;
+
+    char line[MAXLINE];
+
+    if (pipe(fd) < 0)
+        perror("PIPE:EROR");
+
+    if ((pid=fork()) < 0)
+        perror("FORK:EROR");
+    else if (pid > 0){
+        close(fd[0]);
+        write(fd[1], "helloworld", 12);
+    }else{
+        close(fd[1]);
+        n = read(fd[0], line, MAXLINE);
+        write(STDOUT_FILENO, line, n);
+        exit(0);
+    }
+//    run();
+    return 0;
 }
