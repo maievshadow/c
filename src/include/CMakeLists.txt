@@ -10,6 +10,8 @@ cmake_minimum_required(VERSION 2.8)
 
 add_library(MAIEV SHARED
         maiev.c
+        error.c
+        errorlog.c
         )
 
 #add_library(MAIEV_STATIC STATIC
@@ -27,7 +29,7 @@ SET_TARGET_PROPERTIES(MAIEV PROPERTIES VERSION 1.2 SOVERSION 1)
 INSTALL (TARGETS MAIEV LIBRARY DESTINATION lib
 )
 
-INSTALL (FILES maiev.h DESTINATION include/maiev)
+INSTALL (FILES maiev.h apue.h DESTINATION include/maiev)
 
 #add_library(APUE SHARED
 #        bufargs.c cliconn.c clrfl.c daemonize.c error.c errorlog.c lockreg.c locktest.c
