@@ -7,6 +7,9 @@ src/*/CMakeFiles/progress.marks
 src/*/Makefile
 src/*/cmake_install.cmake
 src/*/*.a
+src/*/*.so
+src/*/*.so.*
+src/*/*.so.*.*
 CMakeFiles/*
 Makefile
 cmake_install.cmake

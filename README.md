@@ -1,149 +1,23 @@
-【C/C++】从零开始的cmake教程
 
-通过编写CMakeLists.txt，然后运行cmake命令可以自动生成对应Makefile，从而控制make的编译过程。因此在学习cmake之前，建议先对make有个大致的了解。（欢迎阅读本人编写的另一篇博客【C/C++】从零开始的Make教程）。
+cmake -D CMAKE_INSTALL_PREFIX=/usr/local //设置安装前缀
 
- 
-1.单个源文件的编译
+最近遇到了几个问题
+1):
+编译静态库/动态库问题 --方案可以参考src/test/
+2):
+APUE学习的时候遇到了err_quit等作者自定义函数报错问题
+然后我又重新学习了一下静态库/动态库的编译过程。 因为我把APUE的lib库单独编译成了库 放系统里去
+然而还是报undefined err_quit等函数未定义。最后库的问题解决了
+又遇到了一个问题errorlog.c 里有一个变量
 
-如果你的项目只有一个源文件main.cpp，那么只需要在同一个目录下新建一个名为CMakeLists.txt的文件，并添加下面的两行代码即可。
+/*
+ * Caller must define and set this: nonzero if
+ * interactive, zero if daemon
+ */
+extern int	log_to_stderr;
 
-cmake_minimum_required(VERSION 2.8)
-add_executable(Main main.cpp)
+请看注释 需要我们自己先定义这个变量。不然加载库的时候会爆这个错误～～
 
-然后运行下面的命令,直接生成目标可执行文件Main。
+总结：这两天总算解决了一点点自己的问题！昨天真是失败感油然而生！ ---2019-11-08 11:06
 
-cmake .
-make
-
-如果要添加编译选项，可以通过下面的方法：
-
-cmake_minimum_required(VERSION 2.8)
-add_definitions("-Wall -std=c++11") # <= 新增的编译选项
-add_executable(Main main.cpp)
- 
-2.单目录多源文件的编译
-
-假如你的项目中只有下面4个源文件main.cpp、mod.hpp、mod_func1.cpp、mod_func2.cpp。因为cmake可以很轻松地解析出各文件的依赖关系，因此CMakeLists.txt其实十分简单：
-
-cmake_minimum_required(VERSION 2.8)
-add_executable(Main
-  main.cpp
-  mod_func1.cpp
-  mod_func2.cpp
-)
-
-假如你的项目的文件结构如下：
-
-项目名/
-  main.cpp
-  mod1.hpp
-  mod1/
-    func1.cpp
-    func2.cpp
-  mod2.hpp
-  mod2/
-    func1.cpp
-    func2.cpp
-
-一般有以下两种方法：
-
- 
-1.整个项目仅编写单个CMakeLists.txt
-
-在项目的根目录下编写CMakeLists.txt：
-
-cmake_minimum_required(VERSION 2.8)
-
-add_executable(Main
-  main.cpp
-  mod1/func1.cpp
-  mod1/func2.cpp
-  mod2/func1.cpp
-  mod2/func2.cpp
-)
-
-2.每个目录均编写一个CMakeLists.txt
-
-#CMakeLists.txt
-cmake_minimum_required(VERSION 2.8)
-add_subdirectory(mod1) 
-add_subdirectory(mod2) 
-add_executable(Main main.cpp)
-target_link_libraries(Main Mod1 Mod2) 
-
-
-#mod1/CMakeLists.txt
-cmake_minimum_required(VERSION 2.8)
-add_library(Mod1 STATIC
-  func1.cpp
-  func2.cpp
-)
-
-
-#mod2/CMakeLists.txt
-cmake_minimum_required(VERSION 2.8)
-add_library(Mod2 STATIC
-  func1.cpp
-  func2.cpp
-)
-
-
-我个人更推荐使用这种方法，虽然它看似要编写的代码会增多，但由于更加模块化，管理起来会更加轻松。
-
- 
-add_library
-
-如果加上了STATIC，那么就是生成静态库，比如上面的例子将生成mod1/libMod1.a和mod2/libMod2.a两个库文件。
-
- 
-add_subdirectory
-
-用于添加cmake管理的目录，如果该目录下没有CMakeLists.txt文件，将会直接报错。通过add_definitions和set定义的变量可以传送到对于的子目录，但在子目录设置的变量将不会影响到父目录。
-
- 
-target_link_libraries
-
-将库文件链接到指定的可执行文件，最终生成的linux命令类似于-lMod1 -lMod2。camke会自动寻找对应名称的库文件，而无需书写类似“mod1/Mod1”这样的完整路径。
-
-
-//
-cmake_minimum_required(VERSION 2.8)
-
-set(main_src main.cpp)
-
-if (${UNIX_OS})
-	include_directories(
-		${PROJECT_SOURCE_DIR}/include
-		${PROJECT_SOURCE_DIR}/extensions/include
-		${by3rd_library_include}
-		/usr/local/include
-		/opt/local/include
-		/usr/include
-		)
-elseif (${WIN_OS})
-
-else()
-
-endif()
-
-set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
-
-add_executable(main ${main_src})
-
-set_target_properties(main PROPERTIES OUTPUT_NAME "main")
-
-set_target_properties(main PROPERTIES COMPILE_FLAGS "-std=c++11 -Wall -Werror -fexceptions")
-
-if(CMAKE_BUILD_TYPE STREQUAL Debug)
-	set_target_properties(main PROPERTIES COMPILE_FLAGS "-g3")
-endif()
-
-if(CMAKE_BUILD_TYPE STREQUAL Release)
-	set_target_properties(main PROPERTIES COMPILE_FLAGS "-O3")
-endif()
-
-
-
-link_directories (/usr/local/lib)
-target_link_libraries(main dl)
-install(TARGETS main DESTINATION bin)
+移除cmake的教程。可以参考代码里的cmakelist文件～～
